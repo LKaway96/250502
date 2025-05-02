@@ -15,11 +15,7 @@ function setup() {
 
   // 使用 createGraphics 產生與攝影機畫面相同大小的圖形緩衝區
   graphics = createGraphics(capture.width, capture.height);
-  graphics.background(255, 0, 0); // 設定緩衝區背景為紅色（可自行修改）
-  graphics.fill(255);
-  graphics.textSize(32);
-  graphics.textAlign(CENTER, CENTER);
-  graphics.text('Overlay Text', graphics.width / 2, graphics.height / 2); // 在緩衝區中繪製文字
+  graphics.background(255, 0, 0, 50); // 設定緩衝區背景為紅色（可自行修改）
 }
 
 function draw() {

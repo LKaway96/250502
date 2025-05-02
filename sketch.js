@@ -16,26 +16,12 @@ function setup() {
 function draw() {
   // 設定背景顏色
   background('#0b132b');
-  
-  // 計算影像顯示的起始位置，讓影像置中
-  let aspectRatio = capture.width / capture.height;
-  let displayWidth = windowWidth * 0.8;
-  let displayHeight = displayWidth / aspectRatio;
 
-  if (displayHeight > windowHeight * 0.8) {
-    displayHeight = windowHeight * 0.8;
-    displayWidth = displayHeight * aspectRatio;
-  }
-
-  let x = (width - displayWidth) / 2;
-  let y = (height - displayHeight) / 2;
-  
   // 繪製攝影機畫面到畫布上
-  image(capture, x, y, displayWidth, displayHeight);
+  image(capture, (windowWidth - capture.width)/2, (windowHeight - capture.height)/2, capture.width, capture.height);
 }
 
 function windowResized() {
   // 當視窗大小改變時，重新調整畫布大小
   resizeCanvas(windowWidth, windowHeight);
-  capture.size(windowWidth * 0.8, windowHeight * 0.8);
 }

@@ -18,11 +18,20 @@ function draw() {
   background('#0b132b');
   
   // 計算影像顯示的起始位置，讓影像置中
-  let x = (width - capture.width) / 2;
-  let y = (height - capture.height) / 2;
+  let aspectRatio = capture.width / capture.height;
+  let displayWidth = windowWidth * 0.8;
+  let displayHeight = displayWidth / aspectRatio;
+
+  if (displayHeight > windowHeight * 0.8) {
+    displayHeight = windowHeight * 0.8;
+    displayWidth = displayHeight * aspectRatio;
+  }
+
+  let x = (width - displayWidth) / 2;
+  let y = (height - displayHeight) / 2;
   
   // 繪製攝影機畫面到畫布上
-  image(capture, x, y, capture.width, capture.height);
+  image(capture, x, y, displayWidth, displayHeight);
 }
 
 function windowResized() {

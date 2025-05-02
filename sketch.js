@@ -1,5 +1,5 @@
 let capture;
-
+let createGraphics
 function setup() {
   // 設定畫布大小為視窗大小
   createCanvas(windowWidth, windowHeight);

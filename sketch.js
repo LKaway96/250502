@@ -14,7 +14,7 @@ function setup() {
   capture.hide(); // 隱藏原始的攝影機畫面
 
   // 使用 createGraphics 產生與攝影機畫面相同大小的圖形緩衝區
-  graphics = createGraphics(capture.width, capture.height);
+  graphics = createGraphics(capture.width / 2, capture.height / 2); // 降低解析度
 }
 
 function draw() {
@@ -43,9 +43,10 @@ function draw() {
 
   // 更新 graphics 的內容
   graphics.background(0); // 設定背景為黑色
+  capture.loadPixels(); // 加載攝影機畫面的像素數據
   for (let i = 0; i < graphics.width; i += 20) {
     for (let j = 0; j < graphics.height; j += 20) {
-      let col = capture.get(i, j); // 從 capture 中取得相對位置的顏色
+      let col = capture.get(i * 2, j * 2); // 減少調用次數，對應到原始畫面
       graphics.fill(col);
       graphics.noStroke();
       graphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形

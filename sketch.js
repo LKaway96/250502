@@ -15,7 +15,6 @@ function setup() {
 
   // 使用 createGraphics 產生與攝影機畫面相同大小的圖形緩衝區
   graphics = createGraphics(capture.width, capture.height);
-  graphics.background(255, 0, 0, 50); // 設定緩衝區背景為紅色（可自行修改）
 }
 
 function draw() {
@@ -41,6 +40,17 @@ function draw() {
   scale(-1, 1); // 水平翻轉畫布
   image(capture, x, y, displayWidth, displayHeight);
   pop();
+
+  // 更新 graphics 的內容
+  graphics.background(0); // 設定背景為黑色
+  for (let i = 0; i < graphics.width; i += 20) {
+    for (let j = 0; j < graphics.height; j += 20) {
+      let col = capture.get(i, j); // 從 capture 中取得相對位置的顏色
+      graphics.fill(col);
+      graphics.noStroke();
+      graphics.ellipse(i + 10, j + 10, 15, 15); // 繪製圓形
+    }
+  }
 
   // 在攝影機畫面上方繪製 createGraphics 的內容
   image(graphics, x, y, displayWidth, displayHeight);

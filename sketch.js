@@ -38,7 +38,7 @@ function draw() {
   push();
   translate(width, 0); // 將畫布原點移到右上角
   scale(-1, 1); // 水平翻轉畫布
-  image(capture, x, y, displayWidth, displayHeight);
+  image(capture, -x - displayWidth, y, displayWidth, displayHeight); // 修正翻轉後的位置
   pop();
 
   // 更新 graphics 的內容
